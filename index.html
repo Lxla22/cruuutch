@@ -1,0 +1,2190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="CRUTCH — La mode qui personnalise votre mobilité."
+  />
+  <title>CRUTCH — Votre mobilité. Votre style.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --ink: #121212;
+      --paper: #f8f6f2;
+      --cream: #eee9e1;
+      --orange: #ff6b35;
+      --line: rgba(18, 18, 18, 0.15);
+      --white: #ffffff;
+      --shadow: 0 20px 60px rgba(18, 18, 18, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .announcement {
+      min-height: 35px;
+      padding: 9px 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      background: #151515;
+      color: #ffffff;
+      font-size: 11px;
+      letter-spacing: 0.03em;
+    }
+
+    .announcement span {
+      opacity: 0.9;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(248, 246, 242, 0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(18, 18, 18, 0.1);
+    }
+
+    .nav {
+      height: 105px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .logo {
+      color: #111111;
+      font-family: "Playfair Display", serif;
+      font-size: 34px;
+      font-weight: 500;
+      line-height: 0.8;
+      letter-spacing: -0.08em;
+      white-space: nowrap;
+    }
+
+    .logo img {
+      display: block;
+      width: 132px;
+      height: auto;
+    }
+
+    .logo-footer img {
+      filter: invert(1);
+    }
+
+    .logo span {
+      color: inherit;
+    }
+
+    .logo small {
+      display: block;
+      margin-top: 10px;
+      color: #111111;
+      font-family: "DM Sans", sans-serif;
+      font-size: 7px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      line-height: 1;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 8px 0;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: #111111;
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 15px 22px;
+      border-radius: 4px;
+      background: var(--ink);
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 10px;
+      font-weight: 700;
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        color 0.25s ease;
+    }
+
+    .button:hover {
+      background: #333333;
+      transform: translateY(-3px);
+    }
+
+    .button.light {
+      background: #ffffff;
+      color: #111111;
+    }
+
+    .button.light:hover {
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .button.outline {
+      border: 1px solid #111111;
+      background: transparent;
+      color: #111111;
+    }
+
+    .button.outline:hover {
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      color: #111111;
+      font-size: 26px;
+    }
+
+    /* HERO */
+
+    .hero {
+      width: 100%;
+      max-width: none;
+      min-height: 620px;
+      display: grid;
+      grid-template-columns: 47% 53%;
+      gap: 0;
+      padding: 0;
+      background: var(--cream);
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 65px clamp(30px, 6vw, 90px);
+    }
+
+    .eyebrow {
+      margin-bottom: 20px;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.02;
+    }
+
+    h1,
+    h2 {
+      font-family: "Playfair Display", serif;
+      font-weight: 500;
+      letter-spacing: -0.06em;
+    }
+
+    h1 {
+      max-width: 630px;
+      font-size: clamp(48px, 5vw, 76px);
+    }
+
+    h1 em,
+    h2 em {
+      color: var(--orange);
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    .hero-copy p {
+      max-width: 500px;
+      margin: 28px 0;
+      color: #333333;
+      font-size: 17px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-art {
+      position: relative;
+      min-height: 620px;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(238, 233, 225, 0.15),
+          transparent 35%
+        ),
+        url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1500&q=90")
+          center / cover;
+    }
+
+    .hero-art::before {
+      content: "STYLE\A MOBILITÉ\A INCLUSION\A LIBERTÉ";
+      position: absolute;
+      top: 42px;
+      right: 34px;
+      z-index: 1;
+      white-space: pre;
+      color: #ffffff;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(22px, 2.6vw, 40px);
+      font-style: italic;
+      line-height: 1.25;
+      text-align: right;
+    }
+
+    .hero-art::after {
+      content: "♡";
+      position: absolute;
+      right: 38px;
+      bottom: 25px;
+      color: #ffffff;
+      font-size: 58px;
+    }
+
+    /* ILLUSTRATION CSS DE BÉQUILLE */
+
+    .crutch {
+      --crutch: #ff6b35;
+      --secondary: #171717;
+      position: absolute;
+      width: 125px;
+      height: 425px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(8deg);
+      filter: drop-shadow(16px 20px 12px rgba(0, 0, 0, 0.22));
+      transition: 0.45s ease;
+    }
+
+    .crutch:hover {
+      transform: translate(-50%, -50%) rotate(2deg) scale(1.04);
+    }
+
+    .crutch .top {
+      position: absolute;
+      top: 0;
+      left: 25px;
+      width: 78px;
+      height: 72px;
+      border: 5px solid rgba(255, 255, 255, 0.42);
+      border-radius: 48% 48% 28% 28%;
+      background: var(--crutch);
+    }
+
+    .crutch .shaft {
+      position: absolute;
+      top: 60px;
+      left: 58px;
+      width: 22px;
+      height: 302px;
+      border-radius: 20px;
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.2),
+        var(--crutch) 40%,
+        rgba(255, 255, 255, 0.4)
+      );
+    }
+
+    .crutch .grip {
+      position: absolute;
+      top: 136px;
+      left: 25px;
+      width: 82px;
+      height: 26px;
+      border-radius: 16px;
+      background: var(--secondary);
+      box-shadow: 0 5px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    .crutch .foot {
+      position: absolute;
+      bottom: 0;
+      left: 37px;
+      width: 67px;
+      height: 33px;
+      border-radius: 5px 5px 20px 20px;
+      background: var(--secondary);
+    }
+
+    .crutch.pattern .shaft,
+    .crutch.pattern .top {
+      background-image: radial-gradient(#ffffff 2px, transparent 3px);
+      background-size: 13px 13px;
+    }
+
+    .crutch.sparkle::before,
+    .crutch.sparkle::after {
+      content: "✦";
+      position: absolute;
+      z-index: 2;
+      color: #ffffff;
+      font-size: 26px;
+    }
+
+    .crutch.sparkle::before {
+      top: 88px;
+      right: -20px;
+    }
+
+    .crutch.sparkle::after {
+      top: 220px;
+      left: -26px;
+    }
+
+    /* SECTIONS GÉNÉRALES */
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 42px;
+    }
+
+    h2 {
+      max-width: 720px;
+      font-size: clamp(38px, 5vw, 65px);
+    }
+
+    .section-heading p {
+      max-width: 330px;
+      color: #666666;
+      font-size: 13px;
+    }
+
+    /* CONCEPT */
+
+    .concept {
+      background: var(--ink);
+      color: #ffffff;
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .concept h2 {
+      color: #ffffff;
+    }
+
+    .concept-intro {
+      max-width: 440px;
+      margin-top: 25px;
+      color: #aaaaaa;
+    }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .benefit {
+      padding: 25px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 18px;
+      transition: 0.25s ease;
+    }
+
+    .benefit:hover {
+      background: #272727;
+      transform: translateY(-6px);
+    }
+
+    .benefit b {
+      display: block;
+      margin-bottom: 35px;
+      color: var(--orange);
+      font-size: 24px;
+    }
+
+    .benefit h3 {
+      margin-bottom: 10px;
+      font-size: 17px;
+    }
+
+    .benefit p {
+      color: #aaaaaa;
+      font-size: 13px;
+    }
+
+    /* CATALOGUE */
+
+    #modeles {
+      padding-top: 65px;
+      background: var(--paper);
+    }
+
+    #modeles .section-heading {
+      justify-content: center;
+      text-align: center;
+    }
+
+    #modeles .section-heading p {
+      position: absolute;
+      right: 0;
+      margin-top: 10px;
+      font-size: 11px;
+    }
+
+    .catalog-filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: -15px auto 34px;
+    }
+
+    .catalog-filter {
+      padding: 9px 17px;
+      border: 1px solid #999999;
+      border-radius: 99px;
+      background: transparent;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 10px;
+      transition: 0.2s ease;
+    }
+
+    .catalog-filter:hover,
+    .catalog-filter.active {
+      border-color: #111111;
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(145px, 1fr));
+      gap: 10px;
+    }
+
+    .product-card {
+      padding: 7px 7px 15px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      background: #f1eee9;
+      transition: 0.3s ease;
+    }
+
+    .product-card:hover {
+      border-color: rgba(0, 0, 0, 0.1);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+      transform: translateY(-5px);
+    }
+
+    .product-visual {
+      position: relative;
+      height: 260px;
+      overflow: hidden;
+      border-radius: 5px;
+      background: radial-gradient(circle at 50% 40%, #ffffff, #ebe7e1);
+    }
+
+    .product-visual img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      max-width: 80%;
+      max-height: 88%;
+      transform: translate(-50%, -50%);
+      filter: drop-shadow(6px 10px 10px rgba(0, 0, 0, 0.18));
+      transition: transform 0.45s ease;
+    }
+
+    .product-card:hover .product-visual img {
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    .mini-crutch {
+      transform: translate(-50%, -50%) scale(0.48);
+    }
+
+    .product-card h3 {
+      margin: 14px 8px 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 11px;
+    }
+
+    .product-card p {
+      min-height: 34px;
+      margin: 0 8px 13px;
+      color: #777777;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .product-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 8px;
+      padding-top: 11px;
+      border-top: 1px solid var(--line);
+    }
+
+    .price {
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .product-bottom button {
+      width: auto;
+      height: auto;
+      padding: 7px 10px;
+      border: 1px solid #222222;
+      border-radius: 99px;
+      background: transparent;
+      color: #111111;
+      font-size: 10px;
+      transition: 0.2s ease;
+    }
+
+    .product-bottom button::after {
+      content: " Ajouter";
+    }
+
+    .product-bottom button:hover {
+      background: #111111;
+      color: #ffffff;
+    }
+
+    /* RÉASSURANCE */
+
+    .reassurance {
+      padding: 27px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .reassurance-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .reassurance-grid div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      font-size: 25px;
+    }
+
+    .reassurance-grid span {
+      font-size: 10px;
+      line-height: 1.4;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* PERSONNALISATION */
+
+    .customizer {
+      background: #e9e0d5;
+    }
+
+    .customizer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .custom-preview {
+      position: relative;
+      min-height: 500px;
+      overflow: hidden;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #f8f4ef, #d9cabe);
+    }
+
+    .custom-preview::before {
+      content: "CRUTCH / 01";
+      position: absolute;
+      top: 26px;
+      left: 28px;
+      color: #777777;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+    }
+
+    .custom-preview .crutch {
+      transform: translate(-50%, -50%) scale(1.05) rotate(-7deg);
+    }
+
+    .custom-form label {
+      display: block;
+      margin: 23px 0 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .swatches {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .swatch {
+      width: 34px;
+      height: 34px;
+      border: 3px solid transparent;
+      outline: 1px solid transparent;
+      border-radius: 50%;
+      transition: 0.2s ease;
+    }
+
+    .swatch.active {
+      border-color: var(--paper);
+      outline-color: var(--ink);
+      transform: scale(1.12);
+    }
+
+    .check-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .check-options button {
+      padding: 10px 13px;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      background: #ffffff;
+      font-size: 12px;
+    }
+
+    .check-options button.active {
+      border-color: var(--orange);
+      background: #fff8f4;
+      color: var(--orange);
+    }
+
+    select {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #ffffff;
+      color: var(--ink);
+    }
+
+    /* LIFESTYLE */
+
+    .lifestyle-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr 0.7fr;
+      grid-template-rows: 250px 250px;
+      gap: 14px;
+    }
+
+    .lifestyle-card {
+      position: relative;
+      min-height: 200px;
+      overflow: hidden;
+      border-radius: 20px;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .lifestyle-card:first-child {
+      grid-row: span 2;
+    }
+
+    .lifestyle-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        transparent 30%,
+        rgba(0, 0, 0, 0.66)
+      );
+    }
+
+    .lifestyle-card span {
+      position: absolute;
+      z-index: 1;
+      left: 20px;
+      bottom: 20px;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    /* SPORT */
+
+    .sport {
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.78),
+          rgba(0, 0, 0, 0.15)
+        ),
+        url("https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1600&q=85")
+          center / cover;
+    }
+
+    .sport h2 {
+      max-width: 550px;
+    }
+
+    .sport p {
+      max-width: 470px;
+      margin: 24px 0;
+      color: #dddddd;
+    }
+
+    /* PROFESSIONNELS */
+
+    .pro {
+      background: var(--orange);
+      color: #ffffff;
+    }
+
+    .pro h2 {
+      max-width: 660px;
+    }
+
+    .pro p {
+      max-width: 580px;
+      margin: 22px 0;
+      color: #fff1eb;
+    }
+
+    /* AVIS */
+
+    .testimonials {
+      background: #eee9e1;
+    }
+
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .review {
+      padding: 30px;
+      border-radius: 20px;
+      background: #ffffff;
+    }
+
+    .review .stars {
+      margin-bottom: 32px;
+      color: var(--orange);
+      letter-spacing: 3px;
+    }
+
+    .review p {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      line-height: 1.25;
+    }
+
+    .review small {
+      display: block;
+      margin-top: 28px;
+      color: #777777;
+    }
+
+    /* FAQ */
+
+    .faq-list {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .faq-item {
+      border-top: 1px solid var(--line);
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 22px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      text-align: left;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .faq-question span {
+      font-size: 25px;
+      font-weight: 400;
+      transition: 0.2s ease;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      color: #666666;
+      transition: 0.3s ease;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 120px;
+      padding-bottom: 20px;
+    }
+
+    .faq-item.open .faq-question span {
+      transform: rotate(45deg);
+    }
+
+    /* CTA FINAL */
+
+    .final-cta {
+      margin-bottom: 90px;
+      padding: 90px 25px;
+      border-radius: 35px;
+      background: var(--ink);
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .final-cta h2 {
+      margin: auto;
+    }
+
+    .final-cta p {
+      margin: 20px auto 28px;
+      color: #aaaaaa;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 60px 0 25px;
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr repeat(3, 1fr);
+      gap: 40px;
+      padding-bottom: 60px;
+    }
+
+    footer .logo {
+      margin-bottom: 15px;
+      color: #ffffff;
+    }
+
+    footer .logo small {
+      color: #ffffff;
+    }
+
+    footer p,
+    footer a {
+      color: #999999;
+      font-size: 13px;
+    }
+
+    footer a {
+      display: block;
+      margin: 10px 0;
+    }
+
+    footer a:hover {
+      color: var(--orange);
+    }
+
+    footer h4 {
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 12px;
+    }
+
+    .copyright {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 22px;
+      border-top: 1px solid #333333;
+      color: #777777;
+      font-size: 11px;
+    }
+
+    /* NOTIFICATION */
+
+    .toast {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      z-index: 50;
+      padding: 15px 20px;
+      border-left: 4px solid var(--orange);
+      border-radius: 10px;
+      background: var(--ink);
+      color: #ffffff;
+      font-size: 13px;
+      transform: translateY(120px);
+      transition: 0.35s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+    }
+
+    /* ANIMATIONS */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1100px) {
+      .products {
+        grid-template-columns: repeat(4, minmax(145px, 1fr));
+      }
+    }
+
+    @media (max-width: 950px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav > .button {
+        display: none;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 105px;
+        left: 0;
+        right: 0;
+        display: none;
+        padding: 25px;
+        align-items: flex-start;
+        flex-direction: column;
+        background: var(--paper);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-art {
+        min-height: 500px;
+      }
+
+      .concept-grid,
+      .customizer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .customizer-grid {
+        gap: 30px;
+      }
+
+      .products {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        width: min(100% - 30px, 1180px);
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .announcement {
+        justify-content: center;
+        padding: 9px 15px;
+      }
+
+      .announcement span:nth-child(n + 3) {
+        display: none;
+      }
+
+      .nav {
+        height: 78px;
+      }
+
+      .nav-links {
+        top: 78px;
+      }
+
+      .hero {
+        display: block;
+      }
+
+      .hero-copy {
+        padding: 60px 22px;
+      }
+
+      .hero-art {
+        min-height: 470px;
+      }
+
+      .hero-copy h1 {
+        font-size: 49px;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading p {
+        margin-top: 15px;
+      }
+
+      #modeles .section-heading p {
+        position: static;
+      }
+
+      .benefits,
+      .reviews {
+        grid-template-columns: 1fr;
+      }
+
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .product-visual {
+        height: 220px;
+      }
+
+      .lifestyle-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 220px 160px 160px;
+      }
+
+      .lifestyle-card:first-child {
+        grid-column: span 2;
+        grid-row: auto;
+      }
+
+      .reassurance-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .reassurance-grid div {
+        justify-content: flex-start;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .copyright {
+        display: block;
+      }
+
+      .copyright span {
+        display: block;
+        margin-top: 8px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 7px;
+      }
+
+      .product-visual {
+        height: 195px;
+      }
+
+      .mini-crutch {
+        transform: translate(-50%, -50%) scale(0.4);
+      }
+
+      .product-card h3 {
+        font-size: 10px;
+      }
+
+      .product-card p {
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="announcement">
+    <span>✦ Livraison partout en France</span>
+    <span>✦ Prototype de marque lifestyle</span>
+    <span>✦ Design, liberté, personnalité</span>
+  </div>
+
+  <header>
+    <nav class="nav container">
+
+      <a class="logo" href="#accueil">
+        <img src="images/logo-crutch.png" alt="CRUTCH" />
+        <small>LA MODE QUI PERSONNALISE VOTRE MOBILITÉ</small>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#accueil">Accueil</a>
+        <a href="#concept">Le concept</a>
+        <a href="#modeles">Nos modèles</a>
+        <a href="#personnaliser">Personnaliser</a>
+        <a href="#professionnels">Professionnels</a>
+        <a href="#faq">FAQ</a>
+      </div>
+
+      <a class="button" href="#personnaliser">
+        Personnaliser <span>↗</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Ouvrir le menu"
+      >
+        ☰
+      </button>
+
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero" id="accueil">
+
+      <div class="hero-copy reveal">
+        <div class="eyebrow">La mobilité, autrement</div>
+
+        <h1>
+          Et si votre béquille devenait votre
+          <em>meilleur accessoire&nbsp;?</em>
+        </h1>
+
+        <p>
+          CRUTCH réinvente la mobilité avec des béquilles personnalisables,
+          colorées et pensées pour vous ressembler.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button" href="#modeles">
+            Découvrir nos modèles <span>→</span>
+          </a>
+
+          <a class="button outline" href="#personnaliser">
+            Personnaliser ma CRUTCH
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-art reveal">
+        <div
+          class="crutch pattern sparkle"
+          style="--crutch: #ff6b35; --secondary: #171717"
+        >
+          <div class="top"></div>
+          <div class="shaft"></div>
+          <div class="grip"></div>
+          <div class="foot"></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- CONCEPT -->
+
+    <section class="concept" id="concept">
+      <div class="container concept-grid">
+
+        <div class="reveal">
+          <div class="eyebrow">Le concept CRUTCH</div>
+
+          <h2>
+            Pourquoi une béquille devrait-elle forcément être
+            <em>triste&nbsp;?</em>
+          </h2>
+
+          <p class="concept-intro">
+            Un objet médical peut aussi être beau, personnel et désirable.
+            CRUTCH transforme la béquille en accessoire d’expression,
+            sans compromis sur le confort.
+          </p>
+        </div>
+
+        <div class="benefits reveal">
+
+          <article class="benefit">
+            <b>01</b>
+            <h3>Personnalisez</h3>
+            <p>
+              Choisissez vos couleurs, vos motifs et vos accessoires.
+            </p>
+          </article>
+
+          <article class="benefit">
+            <b>02</b>
+            <h3>Affirmez-vous</h3>
+            <p>
+              Faites de votre mobilité une partie de votre personnalité.
+            </p>
+          </article>
+
+          <article class="benefit">
+            <b>03</b>
+            <h3>Bougez librement</h3>
+            <p>
+              Un design pensé pour accompagner votre quotidien.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CATALOGUE -->
+
+    <section id="modeles">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">La collection CRUTCH</div>
+
+            <h2>
+              Des modèles pour chaque
+              <em>personnalité.</em>
+            </h2>
+          </div>
+
+          <p>
+            Découvrez nos formes, coloris et éditions pensées comme de
+            véritables pièces de style.
+          </p>
+        </div>
+
+        <div class="catalog-filters">
+          <button class="catalog-filter active" data-filter="all">
+            Tout voir
+          </button>
+
+          <button class="catalog-filter" data-filter="adulte">
+            Adulte
+          </button>
+
+          <button class="catalog-filter" data-filter="sport">
+            Sport
+          </button>
+
+          <button class="catalog-filter" data-filter="enfant">
+            Enfant
+          </button>
+
+        </div>
+
+        <div class="products" id="productsGrid"></div>
+
+      </div>
+    </section>
+
+    <!-- RÉASSURANCE -->
+
+    <section class="reassurance">
+      <div class="container reassurance-grid">
+        <div>♢ <span>Design premium</span></div>
+        <div>⌁ <span>Matériaux résistants</span></div>
+        <div>♡ <span>Pour tous les styles</span></div>
+        <div>◎ <span>Mobilité sans limites</span></div>
+      </div>
+    </section>
+
+    <!-- PERSONNALISATION -->
+
+    <section class="customizer" id="personnaliser">
+      <div class="container customizer-grid">
+
+        <div class="custom-preview reveal">
+          <div class="crutch" id="customCrutch">
+            <div class="top"></div>
+            <div class="shaft"></div>
+            <div class="grip"></div>
+            <div class="foot"></div>
+          </div>
+        </div>
+
+        <div class="custom-form reveal">
+          <div class="eyebrow">Studio CRUTCH</div>
+
+          <h2>
+            Créez une CRUTCH qui vous
+            <em>ressemble.</em>
+          </h2>
+
+          <label>Couleur principale</label>
+
+          <div class="swatches" id="primaryColors">
+            <button
+              class="swatch active"
+              data-color="#ff6b35"
+              style="background: #ff6b35"
+              aria-label="Orange"
+            ></button>
+
+            <button
+              class="swatch"
+              data-color="#efabc4"
+              style="background: #efabc4"
+              aria-label="Rose"
+            ></button>
+
+            <button
+              class="swatch"
+              data-color="#9b7bea"
+              style="background: #9b7bea"
+              aria-label="Violet"
+            ></button>
+
+            <button
+              class="swatch"
+              data-color="#377bd8"
+              style="background: #377bd8"
+              aria-label="Bleu"
+            ></button>
+
+            <button
+              class="swatch"
+              data-color="#64ad73"
+              style="background: #64ad73"
+              aria-label="Vert"
+            ></button>
+
+            <button
+              class="swatch"
+              data-color="#f3c644"
+              style="background: #f3c644"
+              aria-label="Jaune"
+            ></button>
+
+            <button
+              class="swatch"
+              data-color="#171717"
+              style="background: #171717"
+              aria-label="Noir"
+            ></button>
+
+            <button
+              class="swatch"
+              data-color="#ffffff"
+              style="background: #ffffff"
+              aria-label="Blanc"
+            ></button>
+          </div>
+
+          <label>Motif</label>
+
+          <div class="check-options" id="patterns">
+            <button class="active" data-pattern="none">Uni</button>
+            <button data-pattern="pattern">Pois</button>
+            <button data-pattern="sparkle">Étoiles</button>
+          </div>
+
+          <label>Style secondaire</label>
+
+          <select id="styleSelect">
+            <option value="#171717">Signature noire</option>
+            <option value="#ffffff">Contraste blanc</option>
+            <option value="#e6b25c">Détail doré</option>
+            <option value="#ff6b35">Détail orange</option>
+          </select>
+
+          <label>Accessoires</label>
+
+          <div class="check-options">
+            <button class="accessory">Bracelet coloré</button>
+            <button class="accessory">Grip confort</button>
+            <button class="accessory">Pochette</button>
+          </div>
+
+          <br />
+
+          <button class="button" id="createButton">
+            Créer ma CRUTCH <span>→</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LIFESTYLE -->
+
+    <section>
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">Votre quotidien, votre style</div>
+
+            <h2>
+              Pour tous les
+              <em>styles de vie.</em>
+            </h2>
+          </div>
+        </div>
+
+        <div class="lifestyle-grid reveal">
+
+          <div
+            class="lifestyle-card"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=85');
+            "
+          >
+            <span>Lifestyle</span>
+          </div>
+
+          <div
+            class="lifestyle-card"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=700&q=85');
+            "
+          >
+            <span>Sport</span>
+          </div>
+
+          <div
+            class="lifestyle-card"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=700&q=85');
+            "
+          >
+            <span>Études</span>
+          </div>
+
+          <div
+            class="lifestyle-card"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=85');
+            "
+          >
+            <span>Travail</span>
+          </div>
+
+          <div
+            class="lifestyle-card"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1539635278303-d4002c07eae3?auto=format&fit=crop&w=700&q=85');
+            "
+          >
+            <span>Voyage</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SPORT -->
+
+    <section class="sport">
+      <div class="container reveal">
+        <div class="eyebrow">CRUTCH Sport</div>
+
+        <h2>
+          Même avec une béquille, votre style ne
+          <em>s’arrête pas.</em>
+        </h2>
+
+        <p>
+          Un univers dynamique pour celles et ceux qui continuent à avancer,
+          à bouger et à se dépasser.
+        </p>
+
+        <a href="#personnaliser" class="button light">
+          Choisir mon style sportif →
+        </a>
+      </div>
+    </section>
+
+    <!-- PROFESSIONNELS -->
+
+    <section class="pro" id="professionnels">
+      <div class="container reveal">
+        <div class="eyebrow">Pour les professionnels</div>
+
+        <h2>
+          CRUTCH s’intègre aussi dans les parcours de mobilité et de
+          <em>rééducation.</em>
+        </h2>
+
+        <p>
+          Pharmacies, hôpitaux, centres de rééducation et clubs sportifs :
+          découvrez une nouvelle façon d’accompagner vos publics.
+        </p>
+
+        <a
+          href="mailto:bonjour@crutch.example"
+          class="button light"
+        >
+          Découvrir nos solutions professionnelles →
+        </a>
+      </div>
+    </section>
+
+    <!-- AVIS -->
+
+    <section class="testimonials">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">Ils et elles en parlent</div>
+
+            <h2>
+              La mobilité, avec une touche de
+              <em>personnalité.</em>
+            </h2>
+          </div>
+        </div>
+
+        <div class="reviews">
+
+          <article class="review reveal">
+            <div class="stars">★★★★★</div>
+
+            <p>
+              « Enfin une béquille qui me ressemble ! »
+            </p>
+
+            <small>
+              — Emma, 22 ans<br />
+              <i>Exemple de prototype</i>
+            </small>
+          </article>
+
+          <article class="review reveal">
+            <div class="stars">★★★★★</div>
+
+            <p>
+              « Je n’avais jamais pensé qu’une béquille pouvait être stylée. »
+            </p>
+
+            <small>
+              — Lucas, 19 ans<br />
+              <i>Exemple de prototype</i>
+            </small>
+          </article>
+
+          <article class="review reveal">
+            <div class="stars">★★★★★</div>
+
+            <p>
+              « Ça change complètement l’image de la mobilité. »
+            </p>
+
+            <small>
+              — Sarah, 28 ans<br />
+              <i>Exemple de prototype</i>
+            </small>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+
+    <section id="faq">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">Questions fréquentes</div>
+
+            <h2>
+              Tout savoir avant de
+              <em>se lancer.</em>
+            </h2>
+          </div>
+        </div>
+
+        <div class="faq-list reveal">
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Comment fonctionne la personnalisation ?
+              <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+              Choisissez votre couleur, votre motif, votre style de grip et
+              vos accessoires dans le configurateur CRUTCH.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Les béquilles sont-elles réglables ?
+              <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+              Le concept prévoit un système de réglage adapté à différentes
+              tailles et morphologies.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Peut-on changer les accessoires ?
+              <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+              Oui, les éléments personnalisables sont conçus pour être
+              remplacés au fil de vos envies.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Où acheter une CRUTCH ?
+              <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+              Ce site présente actuellement un prototype de marque. Une
+              distribution en ligne et via des partenaires est envisagée.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              CRUTCH est-elle adaptée au sport ?
+              <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+              La gamme Sport est pensée pour accompagner les usages actifs,
+              sous réserve d’un avis médical adapté.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Est-il possible de commander pour un établissement ?
+              <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+              Oui, les professionnels peuvent contacter notre équipe pour un
+              projet personnalisé.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+
+    <section class="container">
+      <div class="final-cta reveal">
+        <div class="eyebrow">À vous de jouer</div>
+
+        <h2>
+          Votre mobilité. Votre style.
+          Votre <em>CRUTCH.</em>
+        </h2>
+
+        <p>
+          Imaginez un objet utile qui vous ressemble vraiment.
+        </p>
+
+        <a class="button light" href="#personnaliser">
+          Créer ma CRUTCH →
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+          <div class="logo logo-footer">
+            <img src="images/logo-crutch.png" alt="CRUTCH" />
+            <small>LA MODE QUI PERSONNALISE VOTRE MOBILITÉ</small>
+          </div>
+
+          <p>
+            La mode qui personnalise votre mobilité.
+          </p>
+        </div>
+
+        <div>
+          <h4>Découvrir</h4>
+          <a href="#concept">À propos</a>
+          <a href="#modeles">La collection</a>
+          <a href="#personnaliser">Personnaliser</a>
+        </div>
+
+        <div>
+          <h4>Informations</h4>
+          <a href="#faq">FAQ</a>
+          <a href="#professionnels">Professionnels</a>
+          <a href="mailto:bonjour@crutch.example">Contact</a>
+        </div>
+
+        <div>
+          <h4>Suivez-nous</h4>
+          <a href="#">Instagram ↗</a>
+          <a href="#">TikTok ↗</a>
+          <a href="#">Facebook ↗</a>
+        </div>
+
+      </div>
+
+      <div class="copyright">
+        <span>© 2025 CRUTCH — Prototype étudiant</span>
+        <span>
+          Mentions légales · Politique de confidentialité
+        </span>
+      </div>
+
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const toast = document.getElementById("toast");
+    const navLinks = document.getElementById("navLinks");
+    const productsGrid = document.getElementById("productsGrid");
+    const customCrutch = document.getElementById("customCrutch");
+
+    let cartCount = 0;
+
+    const products = [
+      /* ---------- ADULTE ---------- */
+      {
+        name: "NOIR",
+        category: "adulte",
+        image: "images/crutch-noir.png",
+        description: "Intemporel et élégant.",
+        price: "149 €"
+      },
+      {
+        name: "BLANCHE",
+        category: "adulte",
+        image: "images/crutch-blanche.png",
+        description: "Pureté et modernité.",
+        price: "149 €"
+      },
+      {
+        name: "BORDEAUX",
+        category: "adulte",
+        image: "images/crutch-bordeaux.png",
+        description: "Élégance au quotidien.",
+        price: "149 €"
+      },
+      {
+        name: "BLEU NUIT",
+        category: "adulte",
+        image: "images/crutch-bleu.png",
+        description: "Sobre et affirmée.",
+        price: "149 €"
+      },
+      {
+        name: "GRAPHITE",
+        category: "adulte",
+        image: "images/crutch-graphite.png",
+        description: "Caractère et distinction.",
+        price: "149 €"
+      },
+      {
+        name: "LÉOPARD",
+        category: "adulte",
+        image: "images/crutch-leopard.png",
+        description: "Affirme ton style.",
+        price: "149 €"
+      },
+      {
+        name: "BIOCO",
+        category: "adulte",
+        image: "images/crutch-bioco.png",
+        description: "Marbre noir et reflets cuivrés.",
+        price: "149 €"
+      },
+      {
+        name: "FANTAISIE ORANGE",
+        category: "adulte",
+        image: "images/crutch-fantaisieorange.png",
+        description: "Un graphisme qui ne passe pas inaperçu.",
+        price: "149 €"
+      },
+
+      /* ---------- SPORT ---------- */
+      {
+        name: "ORANGE POP",
+        category: "sport",
+        image: "images/crutch-orangepop.png",
+        description: "Une énergie qui se remarque.",
+        price: "159 €"
+      },
+      {
+        name: "ROSE POP",
+        category: "sport",
+        image: "images/crutch-rosepop.png",
+        description: "Confiance et mouvement.",
+        price: "159 €"
+      },
+      {
+        name: "JAUNE POP",
+        category: "sport",
+        image: "images/crutch-jaunepop.png",
+        description: "Une dose de bonne humeur.",
+        price: "159 €"
+      },
+      {
+        name: "NOIR & VERT POP",
+        category: "sport",
+        image: "images/crutch-noirvertpop.png",
+        description: "Esprit nature et performance.",
+        price: "159 €"
+      },
+      {
+        name: "MARBRE POP",
+        category: "sport",
+        image: "images/crutch-marbrepop.png",
+        description: "Minérale, nette et dynamique.",
+        price: "159 €"
+      },
+
+      /* ---------- ENFANT ---------- */
+      {
+        name: "SUPERHERO",
+        category: "enfant",
+        image: "images/crutch-superhero.png",
+        description: "Des héros toujours debout.",
+        price: "129 €"
+      },
+      {
+        name: "PRINCESSE",
+        category: "enfant",
+        image: "images/crutch-princesse.png",
+        description: "Petite et véritablement forte.",
+        price: "129 €"
+      },
+      {
+        name: "CANDY",
+        category: "enfant",
+        image: "images/crutch-candy.png",
+        description: "Colorée, joyeuse et libre.",
+        price: "129 €"
+      },
+      {
+        name: "ANIMAUX",
+        category: "enfant",
+        image: "images/crutch-animaux.png",
+        description: "Une petite jungle à emporter.",
+        price: "129 €"
+      }
+    ];
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2800);
+    }
+
+    function addCart(product) {
+      cartCount += 1;
+      showToast(`${product} ajouté à votre sélection · ${cartCount}`);
+    }
+
+    function renderProducts(filter = "all") {
+      productsGrid.innerHTML = "";
+
+      const filteredProducts =
+        filter === "all"
+          ? products
+          : products.filter((product) => product.category === filter);
+
+      filteredProducts.forEach((product) => {
+        const card = document.createElement("article");
+
+        card.className = "product-card reveal visible";
+
+        card.innerHTML = `
+          <div class="product-visual">
+            <img src="${product.image}" alt="Béquille CRUTCH ${product.name}" loading="lazy" />
+          </div>
+
+          <h3>${product.name}</h3>
+
+          <p>${product.description}</p>
+
+          <div class="product-bottom">
+            <span class="price">${product.price}*</span>
+            <button type="button">+</button>
+          </div>
+        `;
+
+        card
+          .querySelector("button")
+          .addEventListener("click", () => addCart(product.name));
+
+        productsGrid.appendChild(card);
+      });
+    }
+
+    renderProducts();
+
+    /* MENU MOBILE */
+
+    document
+      .getElementById("menuToggle")
+      .addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
+
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+
+    /* FILTRES DU CATALOGUE */
+
+    document.querySelectorAll(".catalog-filter").forEach((button) => {
+      button.addEventListener("click", () => {
+        document
+          .querySelectorAll(".catalog-filter")
+          .forEach((item) => item.classList.remove("active"));
+
+        button.classList.add("active");
+        renderProducts(button.dataset.filter);
+      });
+    });
+
+    /* COULEURS DU CONFIGURATEUR */
+
+    document
+      .querySelectorAll("#primaryColors .swatch")
+      .forEach((swatch) => {
+        swatch.addEventListener("click", () => {
+          document
+            .querySelectorAll("#primaryColors .swatch")
+            .forEach((item) => item.classList.remove("active"));
+
+          swatch.classList.add("active");
+
+          customCrutch.style.setProperty(
+            "--crutch",
+            swatch.dataset.color
+          );
+        });
+      });
+
+    /* MOTIFS */
+
+    document
+      .querySelectorAll("#patterns button")
+      .forEach((button) => {
+        button.addEventListener("click", () => {
+          document
+            .querySelectorAll("#patterns button")
+            .forEach((item) => item.classList.remove("active"));
+
+          button.classList.add("active");
+
+          customCrutch.classList.remove("pattern", "sparkle");
+
+          if (button.dataset.pattern !== "none") {
+            customCrutch.classList.add(button.dataset.pattern);
+          }
+        });
+      });
+
+    /* STYLE SECONDAIRE */
+
+    document
+      .getElementById("styleSelect")
+      .addEventListener("change", (event) => {
+        customCrutch.style.setProperty(
+          "--secondary",
+          event.target.value
+        );
+      });
+
+    /* ACCESSOIRES */
+
+    document.querySelectorAll(".accessory").forEach((button) => {
+      button.addEventListener("click", () => {
+        button.classList.toggle("active");
+      });
+    });
+
+    document
+      .getElementById("createButton")
+      .addEventListener("click", () => {
+        showToast(
+          "Votre CRUTCH personnalisée est prête à être imaginée !"
+        );
+      });
+
+    /* FAQ ACCORDÉON */
+
+    document.querySelectorAll(".faq-question").forEach((question) => {
+      question.addEventListener("click", () => {
+        const item = question.parentElement;
+
+        document.querySelectorAll(".faq-item").forEach((other) => {
+          if (other !== item) {
+            other.classList.remove("open");
+          }
+        });
+
+        item.classList.toggle("open");
+      });
+    });
+
+    /* ANIMATIONS AU SCROLL */
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+    document.querySelectorAll(".reveal").forEach((element) => {
+      observer.observe(element);
+    });
+  </script>
+
+</body>
+</html>
