@@ -2722,9 +2722,39 @@
     document
       .getElementById("createButton")
       .addEventListener("click", () => {
-        showToast(
-          "Votre CRUTCH personnalisée est prête à être imaginée !"
+        const activeCategoryBtn = document.querySelector(
+          "#modelCategory button.active"
         );
+        const activeSwatch = document.querySelector(
+          "#primaryColors .swatch.active"
+        );
+        const activePattern = document.querySelector(
+          "#patterns button.active"
+        );
+
+        const category = activeCategoryBtn
+          ? activeCategoryBtn.dataset.category
+          : "adulte";
+        const colorLabel = activeSwatch
+          ? activeSwatch.getAttribute("aria-label")
+          : "Orange";
+        const patternLabel = activePattern
+          ? activePattern.textContent.trim()
+          : "Uni";
+
+        const priceByCategory = {
+          adulte: "149 €",
+          sport: "159 €",
+          enfant: "129 €"
+        };
+        const price = priceByCategory[category] || "149 €";
+
+        const name =
+          "CRUTCH PERSO " +
+          colorLabel.toUpperCase() +
+          (patternLabel !== "Uni" ? " " + patternLabel.toUpperCase() : "");
+
+        addToCart({ name, price });
       });
 
     /* FAQ ACCORDÉON */
