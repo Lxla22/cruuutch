@@ -2309,8 +2309,11 @@
           model.traverse((child) => {
             if (!child.isMesh) return;
             child.material = child.material.clone();
-            if (COLOR_PARTS.includes(child.name)) colorMeshes.push(child);
-            if (ACCENT_PARTS.includes(child.name)) accentMeshes.push(child);
+            // Le nom utile ("stick_low", "armsupport_low"...) est porté par le
+            // groupe parent ; le mesh lui-même s'appelle toujours "defaultMaterial".
+            const partName = (child.parent && child.parent.name) || child.name;
+            if (COLOR_PARTS.includes(partName)) colorMeshes.push(child);
+            if (ACCENT_PARTS.includes(partName)) accentMeshes.push(child);
           });
 
           crutchGroup.add(model);
