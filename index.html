@@ -461,6 +461,53 @@
       font-size: 13px;
     }
 
+    .ergonomics-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .ergonomics-visual {
+      overflow: hidden;
+      border-radius: 24px;
+      background: #f1eee9;
+    }
+
+    .ergonomics-visual img {
+      display: block;
+      width: 100%;
+      height: 460px;
+      object-fit: contain;
+      padding: 30px;
+    }
+
+    .ergonomics-points {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .ergonomics-points div {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .ergonomics-points b {
+      flex-shrink: 0;
+      color: var(--orange);
+      font-family: "Playfair Display", serif;
+      font-size: 20px;
+    }
+
+    .ergonomics-points span {
+      color: #555555;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
     /* CATALOGUE */
 
     #modeles {
@@ -739,6 +786,26 @@
       font-size: 11px;
     }
 
+    .upload-clear {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border: 1px solid #cccccc;
+      border-radius: 50%;
+      background: #ffffff;
+      color: #555555;
+      font-size: 14px;
+      line-height: 1;
+      transition: 0.2s ease;
+    }
+
+    .upload-clear:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
     .custom-form label {
       display: block;
       margin: 23px 0 10px;
@@ -882,6 +949,58 @@
       max-width: 580px;
       margin: 22px 0;
       color: #fff1eb;
+    }
+
+    .recycle {
+      background: #eef4ee;
+    }
+
+    .recycle-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .recycle-points {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .recycle-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 20px;
+      border-radius: 16px;
+      background: #ffffff;
+    }
+
+    .recycle-point b {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(47, 122, 77, 0.12);
+      font-size: 19px;
+      font-style: normal;
+    }
+
+    .recycle-point h3 {
+      margin-bottom: 6px;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .recycle-point p {
+      color: #666666;
+      font-size: 13px;
+      line-height: 1.5;
     }
 
     /* AVIS */
@@ -1038,6 +1157,221 @@
       border-top: 1px solid #333333;
       color: #777777;
       font-size: 11px;
+    }
+
+    .cart-toggle {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: transparent;
+      color: #111111;
+      font-size: 19px;
+    }
+
+    .cart-toggle:hover {
+      background: rgba(18, 18, 18, 0.06);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      min-width: 17px;
+      height: 17px;
+      padding: 0 4px;
+      border-radius: 99px;
+      background: var(--orange);
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 55;
+      display: none;
+      background: rgba(18, 18, 18, 0.45);
+    }
+
+    .cart-overlay.show {
+      display: block;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 56;
+      width: min(380px, 100%);
+      display: flex;
+      flex-direction: column;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      transform: translateX(100%);
+      transition: transform 0.35s ease;
+    }
+
+    .cart-drawer.show {
+      transform: translateX(0);
+    }
+
+    .cart-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 26px 26px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cart-drawer-header h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+    }
+
+    .cart-drawer-header button {
+      background: none;
+      border: none;
+      color: #333333;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px 26px;
+    }
+
+    .cart-empty {
+      margin-top: 30px;
+      color: #888888;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cart-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .cart-item span {
+      color: #777777;
+      font-size: 12px;
+    }
+
+    .cart-remove {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border: 1px solid #cccccc;
+      border-radius: 50%;
+      background: #ffffff;
+      color: #555555;
+      font-size: 14px;
+    }
+
+    .cart-remove:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    .cart-footer {
+      padding: 22px 26px 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .cart-footer .button {
+      width: 100%;
+    }
+
+    .copyright a,
+    .legal-link {
+      color: #777777;
+      font-size: 11px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .legal-link:hover {
+      color: var(--orange);
+    }
+
+    .legal-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(18, 18, 18, 0.55);
+    }
+
+    .legal-modal.show {
+      display: flex;
+    }
+
+    .legal-modal-box {
+      position: relative;
+      max-width: 560px;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 40px;
+      border-radius: 18px;
+      background: #ffffff;
+      color: #222222;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .legal-modal-box h3 {
+      margin-bottom: 16px;
+      font-family: "Playfair Display", serif;
+      font-size: 24px;
+    }
+
+    .legal-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      background: none;
+      border: none;
+      color: #333333;
+      font-size: 22px;
+      cursor: pointer;
     }
 
     /* NOTIFICATION */
@@ -1267,7 +1601,6 @@
 
       <a class="logo" href="#accueil">
         <img src="images/logo-crutch.png" alt="CRUTCH" />
-        <small>LA MODE QUI PERSONNALISE VOTRE MOBILITÉ</small>
       </a>
 
       <div class="nav-links" id="navLinks">
@@ -1282,6 +1615,15 @@
       <a class="button" href="#personnaliser">
         Personnaliser <span>↗</span>
       </a>
+
+      <button
+        class="cart-toggle"
+        id="cartToggle"
+        aria-label="Voir le panier"
+      >
+        🛍
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
 
       <button
         class="menu-toggle"
@@ -1379,6 +1721,49 @@
       </div>
     </section>
 
+    <!-- ERGONOMIE -->
+
+    <section id="ergonomie">
+      <div class="container ergonomics-grid">
+
+        <div class="ergonomics-visual reveal">
+          <img src="images/crutch-graphite.png" alt="Détail ergonomique de la béquille CRUTCH" />
+        </div>
+
+        <div class="reveal">
+          <div class="eyebrow">Pensée pour le corps</div>
+
+          <h2>
+            Le style ne fait aucun compromis sur le
+            <em>confort.</em>
+          </h2>
+
+          <p class="concept-intro">
+            Chaque CRUTCH est dessinée avec un vrai travail d'ergonomie :
+            un appui avant-bras ajustable, une poignée qui épouse la main
+            et un tube allégé, pour limiter la fatigue du poignet et de
+            l'épaule au fil de la journée.
+          </p>
+
+          <div class="ergonomics-points">
+            <div>
+              <b>01</b>
+              <span>Appui avant-bras réglable en hauteur et en angle</span>
+            </div>
+            <div>
+              <b>02</b>
+              <span>Poignée contourée, grip antidérapant même par temps humide</span>
+            </div>
+            <div>
+              <b>03</b>
+              <span>Structure allégée pour réduire la fatigue sur la durée</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <!-- CATALOGUE -->
 
     <section id="modeles">
@@ -1393,11 +1778,6 @@
               <em>personnalité.</em>
             </h2>
           </div>
-
-          <p>
-            Découvrez nos formes, coloris et éditions pensées comme de
-            véritables pièces de style.
-          </p>
         </div>
 
         <div class="catalog-filters">
@@ -1544,6 +1924,15 @@
             <span class="upload-filename" id="uploadFilename">
               Aucun fichier
             </span>
+            <button
+              type="button"
+              class="upload-clear"
+              id="uploadClear"
+              aria-label="Retirer l'image importée"
+              hidden
+            >
+              ×
+            </button>
           </div>
 
           <label>Style secondaire</label>
@@ -1603,10 +1992,10 @@
           <div
             class="lifestyle-card"
             style="
-              background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=700&q=85');
+              background-image: url('https://images.unsplash.com/photo-1624893400232-bd07fa1133bf?auto=format&fit=crop&w=700&q=85');
             "
           >
-            <span>Sport</span>
+            <span>Foot</span>
           </div>
 
           <div
@@ -1685,6 +2074,66 @@
         >
           Découvrir nos solutions professionnelles →
         </a>
+      </div>
+    </section>
+
+    <!-- RECYCLAGE -->
+
+    <section class="recycle" id="recyclage">
+      <div class="container recycle-grid">
+
+        <div class="reveal">
+          <div class="eyebrow">CRUTCH s'engage</div>
+
+          <h2>
+            Une béquille que l'on
+            <em>recycle</em>, pas que l'on jette.
+          </h2>
+
+          <p class="concept-intro">
+            Une CRUTCH abîmée, trop petite ou dont vous n'avez plus besoin ?
+            Rapportez-la dans l'un de nos points de collecte : elle sera
+            reconditionnée ou recyclée plutôt que jetée.
+          </p>
+        </div>
+
+        <div class="recycle-points reveal">
+
+          <div class="recycle-point">
+            <b>⚕</b>
+            <div>
+              <h3>En pharmacie partenaire</h3>
+              <p>
+                Déposez votre béquille dans les pharmacies équipées d'un bac
+                de collecte CRUTCH.
+              </p>
+            </div>
+          </div>
+
+          <div class="recycle-point">
+            <b>🏥</b>
+            <div>
+              <h3>Centres de rééducation</h3>
+              <p>
+                Nos points relais en centre de rééducation et de mobilité
+                récupèrent les béquilles en fin de vie.
+              </p>
+            </div>
+          </div>
+
+          <div class="recycle-point">
+            <b>♻</b>
+            <div>
+              <h3>Bacs de collecte CRUTCH</h3>
+              <p>
+                Des bacs aux couleurs de la marque, déployés progressivement
+                chez nos points de vente partenaires.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </section>
 
@@ -1878,11 +2327,10 @@
         <div>
           <div class="logo logo-footer">
             <img src="images/logo-crutch.png" alt="CRUTCH" />
-            <small>LA MODE QUI PERSONNALISE VOTRE MOBILITÉ</small>
           </div>
 
           <p>
-            La mode qui personnalise votre mobilité.
+            La béquille fun est colorée.
           </p>
         </div>
 
@@ -1910,14 +2358,46 @@
       </div>
 
       <div class="copyright">
-        <span>© 2025 CRUTCH — Prototype étudiant</span>
+        <span>© 2025 CRUTCH — by Lola COHIDON</span>
         <span>
-          Mentions légales · Politique de confidentialité
+          <button type="button" class="legal-link" data-legal="mentions">Mentions légales</button>
+          ·
+          <button type="button" class="legal-link" data-legal="confidentialite">Politique de confidentialité</button>
         </span>
       </div>
 
     </div>
   </footer>
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3>Votre panier</h3>
+      <button type="button" id="cartClose" aria-label="Fermer le panier">×</button>
+    </div>
+
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty">Votre panier est vide.</p>
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Total</span>
+        <span id="cartTotal">0 €</span>
+      </div>
+      <button type="button" class="button" id="cartCheckout">
+        Commander <span>→</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="legal-modal" id="legalModal">
+    <div class="legal-modal-box">
+      <button type="button" class="legal-modal-close" id="legalModalClose" aria-label="Fermer">×</button>
+      <div id="legalModalContent"></div>
+    </div>
+  </div>
 
   <div class="toast" id="toast"></div>
 
@@ -1925,8 +2405,6 @@
     const toast = document.getElementById("toast");
     const navLinks = document.getElementById("navLinks");
     const productsGrid = document.getElementById("productsGrid");
-
-    let cartCount = 0;
 
     const products = [
       /* ---------- ADULTE ---------- */
@@ -2052,6 +2530,13 @@
         image: "images/crutch-animaux.png",
         description: "Une petite jungle à emporter.",
         price: "129 €"
+      },
+      {
+        name: "FANTAISIE ORANGE",
+        category: "enfant",
+        image: "images/crutch-fantaisieorange.png",
+        description: "Un graphisme qui ne passe pas inaperçu.",
+        price: "129 €"
       }
     ];
 
@@ -2064,10 +2549,99 @@
       }, 2800);
     }
 
-    function addCart(product) {
-      cartCount += 1;
-      showToast(`${product} ajouté à votre sélection · ${cartCount}`);
+    /* PANIER */
+
+    let cart = [];
+
+    const cartToggle = document.getElementById("cartToggle");
+    const cartDrawer = document.getElementById("cartDrawer");
+    const cartOverlay = document.getElementById("cartOverlay");
+    const cartClose = document.getElementById("cartClose");
+    const cartItemsEl = document.getElementById("cartItems");
+    const cartTotalEl = document.getElementById("cartTotal");
+    const cartCountEl = document.getElementById("cartCount");
+    const cartCheckout = document.getElementById("cartCheckout");
+
+    function openCart() {
+      cartDrawer.classList.add("show");
+      cartOverlay.classList.add("show");
     }
+
+    function closeCart() {
+      cartDrawer.classList.remove("show");
+      cartOverlay.classList.remove("show");
+    }
+
+    function cartTotal() {
+      return cart.reduce(
+        (sum, item) => sum + parseInt(item.price, 10) * item.qty,
+        0
+      );
+    }
+
+    function renderCart() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCountEl.textContent = count;
+      cartCountEl.style.display = count > 0 ? "flex" : "none";
+
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML =
+          '<p class="cart-empty">Votre panier est vide.</p>';
+      } else {
+        cartItemsEl.innerHTML = cart
+          .map(
+            (item) => `
+              <div class="cart-item">
+                <div>
+                  <strong>${item.name}</strong>
+                  <span>${item.price}* × ${item.qty}</span>
+                </div>
+                <button type="button" class="cart-remove" data-name="${item.name}" aria-label="Retirer">×</button>
+              </div>
+            `
+          )
+          .join("");
+
+        cartItemsEl.querySelectorAll(".cart-remove").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            cart = cart.filter((item) => item.name !== btn.dataset.name);
+            renderCart();
+          });
+        });
+      }
+
+      cartTotalEl.textContent = `${cartTotal()} €`;
+    }
+
+    function addToCart(product) {
+      const existing = cart.find((item) => item.name === product.name);
+
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ name: product.name, price: product.price, qty: 1 });
+      }
+
+      renderCart();
+      showToast(`${product.name} ajouté au panier`);
+    }
+
+    cartToggle.addEventListener("click", openCart);
+    cartClose.addEventListener("click", closeCart);
+    cartOverlay.addEventListener("click", closeCart);
+
+    cartCheckout.addEventListener("click", () => {
+      if (cart.length === 0) {
+        showToast("Votre panier est vide.");
+        return;
+      }
+      showToast("Commande simulée — merci pour votre confiance !");
+      cart = [];
+      renderCart();
+      closeCart();
+    });
+
+    renderCart();
 
     function renderProducts(filter = "all") {
       productsGrid.innerHTML = "";
@@ -2099,7 +2673,7 @@
 
         card
           .querySelector("button")
-          .addEventListener("click", () => addCart(product.name));
+          .addEventListener("click", () => addToCart(product));
 
         productsGrid.appendChild(card);
       });
@@ -2247,30 +2821,38 @@
         ctx.fillRect(0, 0, size, size);
 
         if (pattern === "pattern") {
-          ctx.fillStyle = "rgba(255,255,255,0.55)";
-          const step = 42;
+          const step = 64;
           for (let y = step / 2; y < size; y += step) {
             for (let x = step / 2; x < size; x += step) {
               ctx.beginPath();
-              ctx.arc(x, y, 7, 0, Math.PI * 2);
+              ctx.arc(x, y, 16, 0, Math.PI * 2);
+              ctx.fillStyle = "#ffffff";
               ctx.fill();
+              ctx.lineWidth = 3;
+              ctx.strokeStyle = "rgba(0,0,0,0.28)";
+              ctx.stroke();
             }
           }
         } else if (pattern === "sparkle") {
-          ctx.fillStyle = "rgba(255,255,255,0.9)";
-          ctx.font = "38px serif";
+          const step = 90;
           ctx.textAlign = "center";
-          for (let i = 0; i < 24; i += 1) {
-            const x = Math.random() * size;
-            const y = Math.random() * size;
-            ctx.fillText("✦", x, y);
+          ctx.textBaseline = "middle";
+          ctx.font = "64px serif";
+          for (let y = step / 2; y < size; y += step) {
+            for (let x = step / 2; x < size; x += step) {
+              ctx.fillStyle = "#ffffff";
+              ctx.fillText("✦", x, y);
+              ctx.lineWidth = 1.5;
+              ctx.strokeStyle = "rgba(0,0,0,0.35)";
+              ctx.strokeText("✦", x, y);
+            }
           }
         }
 
         const texture = new THREE.CanvasTexture(canvas);
         texture.wrapS = THREE.RepeatWrapping;
         texture.wrapT = THREE.RepeatWrapping;
-        texture.repeat.set(2, 4);
+        texture.repeat.set(1.5, 3);
         return texture;
       }
 
@@ -2363,6 +2945,16 @@
 
       /* --- Câblage avec les contrôles du Studio CRUTCH --- */
 
+      function clearCustomUpload() {
+        customTexture = null;
+        const input = document.getElementById("customImageInput");
+        const filename = document.getElementById("uploadFilename");
+        const clearBtn = document.getElementById("uploadClear");
+        if (input) input.value = "";
+        if (filename) filename.textContent = "Aucun fichier";
+        if (clearBtn) clearBtn.hidden = true;
+      }
+
       document.querySelectorAll("#primaryColors .swatch").forEach((swatch) => {
         swatch.addEventListener("click", () => {
           document
@@ -2370,7 +2962,7 @@
             .forEach((item) => item.classList.remove("active"));
           swatch.classList.add("active");
           baseColor = swatch.dataset.color;
-          customTexture = null;
+          clearCustomUpload();
           applyBodyMaterial();
         });
       });
@@ -2382,7 +2974,7 @@
             .forEach((item) => item.classList.remove("active"));
           button.classList.add("active");
           currentPattern = button.dataset.pattern;
-          customTexture = null;
+          clearCustomUpload();
           applyBodyMaterial();
         });
       });
@@ -2397,11 +2989,13 @@
 
       const customImageInput = document.getElementById("customImageInput");
       const uploadFilename = document.getElementById("uploadFilename");
+      const uploadClear = document.getElementById("uploadClear");
       if (customImageInput) {
         customImageInput.addEventListener("change", (event) => {
           const file = event.target.files[0];
           if (!file) return;
           if (uploadFilename) uploadFilename.textContent = file.name;
+          if (uploadClear) uploadClear.hidden = false;
 
           const reader = new FileReader();
           reader.onload = (readerEvent) => {
@@ -2421,6 +3015,13 @@
         });
       }
 
+      if (uploadClear) {
+        uploadClear.addEventListener("click", () => {
+          clearCustomUpload();
+          applyBodyMaterial();
+        });
+      }
+
       document.querySelectorAll("#modelCategory button").forEach((button) => {
         button.addEventListener("click", () => {
           document
@@ -2428,6 +3029,63 @@
             .forEach((item) => item.classList.remove("active"));
           button.classList.add("active");
         });
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const legalModal = document.getElementById("legalModal");
+      const legalModalContent = document.getElementById("legalModalContent");
+      const legalModalClose = document.getElementById("legalModalClose");
+
+      const legalContent = {
+        mentions: `
+          <h3>Mentions légales</h3>
+          <p>Éditrice et propriétaire du site : Lola COHIDON.</p>
+          <p>
+            Ce site CRUTCH est un projet personnel conçu, développé et rédigé
+            dans son intégralité (design, code et contenus) par Lola COHIDON,
+            qui en est l'unique propriétaire.
+          </p>
+          <p>
+            Ce site est présenté à titre de prototype de marque et ne
+            constitue pas, à ce jour, une plateforme de vente commerciale
+            active.
+          </p>
+        `,
+        confidentialite: `
+          <h3>Politique de confidentialité</h3>
+          <p>
+            Ce site est un prototype et ne collecte, à ce jour, aucune
+            donnée personnelle à des fins commerciales. Les informations
+            saisies (par exemple dans le configurateur) restent locales à
+            votre navigateur et ne sont transmises à aucun tiers.
+          </p>
+          <p>
+            Pour toute question relative à ce site, vous pouvez contacter
+            sa propriétaire, Lola COHIDON, via l'adresse indiquée en pied de
+            page.
+          </p>
+        `
+      };
+
+      document.querySelectorAll(".legal-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          const key = link.dataset.legal;
+          legalModalContent.innerHTML = legalContent[key] || "";
+          legalModal.classList.add("show");
+        });
+      });
+
+      legalModalClose.addEventListener("click", () => {
+        legalModal.classList.remove("show");
+      });
+
+      legalModal.addEventListener("click", (event) => {
+        if (event.target === legalModal) {
+          legalModal.classList.remove("show");
+        }
       });
     })();
   </script>
