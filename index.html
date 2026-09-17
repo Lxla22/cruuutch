@@ -664,8 +664,79 @@
       letter-spacing: 0.14em;
     }
 
-    .custom-preview .crutch {
-      transform: translate(-50%, -50%) scale(1.05) rotate(-7deg);
+    .crutch3d-viewport {
+      position: absolute;
+      inset: 0;
+      cursor: grab;
+    }
+
+    .crutch3d-viewport canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .crutch3d-hint {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #8a8a8a;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .model-category {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .model-category button {
+      padding: 10px 16px;
+      border: 1px solid #999999;
+      border-radius: 99px;
+      background: transparent;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 11px;
+      transition: 0.2s ease;
+    }
+
+    .model-category button.active,
+    .model-category button:hover {
+      border-color: #111111;
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .upload-motif {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .upload-motif .upload-label {
+      padding: 10px 16px;
+      border: 1px dashed #999999;
+      border-radius: 9px;
+      background: #ffffff;
+      font-size: 12px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .upload-motif .upload-label:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    .upload-motif .upload-filename {
+      color: #777777;
+      font-size: 11px;
     }
 
     .custom-form label {
@@ -1370,12 +1441,8 @@
       <div class="container customizer-grid">
 
         <div class="custom-preview reveal">
-          <div class="crutch" id="customCrutch">
-            <div class="top"></div>
-            <div class="shaft"></div>
-            <div class="grip"></div>
-            <div class="foot"></div>
-          </div>
+          <div class="crutch3d-viewport" id="crutch3dViewport"></div>
+          <div class="crutch3d-hint">Bougez la souris pour faire pivoter</div>
         </div>
 
         <div class="custom-form reveal">
@@ -1385,6 +1452,14 @@
             Créez une CRUTCH qui vous
             <em>ressemble.</em>
           </h2>
+
+          <label>Modèle</label>
+
+          <div class="model-category" id="modelCategory">
+            <button class="active" data-category="adulte">Adulte</button>
+            <button data-category="sport">Sport</button>
+            <button data-category="enfant">Enfant</button>
+          </div>
 
           <label>Couleur principale</label>
 
@@ -1452,6 +1527,23 @@
             <button class="active" data-pattern="none">Uni</button>
             <button data-pattern="pattern">Pois</button>
             <button data-pattern="sparkle">Étoiles</button>
+          </div>
+
+          <label>Motif personnalisé</label>
+
+          <div class="upload-motif">
+            <label class="upload-label" for="customImageInput">
+              Importer une image ↑
+            </label>
+            <input
+              type="file"
+              id="customImageInput"
+              accept="image/*"
+              hidden
+            />
+            <span class="upload-filename" id="uploadFilename">
+              Aucun fichier
+            </span>
           </div>
 
           <label>Style secondaire</label>
@@ -1833,7 +1925,6 @@
     const toast = document.getElementById("toast");
     const navLinks = document.getElementById("navLinks");
     const productsGrid = document.getElementById("productsGrid");
-    const customCrutch = document.getElementById("customCrutch");
 
     let cartCount = 0;
 
@@ -2043,55 +2134,8 @@
       });
     });
 
-    /* COULEURS DU CONFIGURATEUR */
-
-    document
-      .querySelectorAll("#primaryColors .swatch")
-      .forEach((swatch) => {
-        swatch.addEventListener("click", () => {
-          document
-            .querySelectorAll("#primaryColors .swatch")
-            .forEach((item) => item.classList.remove("active"));
-
-          swatch.classList.add("active");
-
-          customCrutch.style.setProperty(
-            "--crutch",
-            swatch.dataset.color
-          );
-        });
-      });
-
-    /* MOTIFS */
-
-    document
-      .querySelectorAll("#patterns button")
-      .forEach((button) => {
-        button.addEventListener("click", () => {
-          document
-            .querySelectorAll("#patterns button")
-            .forEach((item) => item.classList.remove("active"));
-
-          button.classList.add("active");
-
-          customCrutch.classList.remove("pattern", "sparkle");
-
-          if (button.dataset.pattern !== "none") {
-            customCrutch.classList.add(button.dataset.pattern);
-          }
-        });
-      });
-
-    /* STYLE SECONDAIRE */
-
-    document
-      .getElementById("styleSelect")
-      .addEventListener("change", (event) => {
-        customCrutch.style.setProperty(
-          "--secondary",
-          event.target.value
-        );
-      });
+    /* Couleurs, motifs et style secondaire : voir le moteur 3D CRUTCH plus bas,
+       qui prend le relais sur #primaryColors, #patterns et #styleSelect. */
 
     /* ACCESSOIRES */
 
@@ -2143,6 +2187,246 @@
     document.querySelectorAll(".reveal").forEach((element) => {
       observer.observe(element);
     });
+  </script>
+
+  <!-- MOTEUR 3D CRUTCH — modèle réel, rotation à la souris, couleurs / motifs / image personnalisée -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script>
+    (function () {
+      const viewport = document.getElementById("crutch3dViewport");
+      if (!viewport || !window.THREE || !THREE.GLTFLoader) return;
+
+      // Chemin du modèle 3D dans le dépôt (à placer dans /models/)
+      const MODEL_URL = "models/forearm_crutch_bakedtextured.glb";
+
+      // Parties du modèle que l'on recolore : le corps (tube + appui avant-bras)
+      const COLOR_PARTS = ["stick_low", "armsupport_low"];
+      // Pièces "accent" : vis, boulons (Style secondaire)
+      const ACCENT_PARTS = ["bolt_low", "top_screw_low", "bottom_screw_low"];
+
+      let baseColor = "#ff6b35";
+      let accentColor = "#171717";
+      let currentPattern = "none";
+      let customTexture = null;
+      const colorMeshes = [];
+      const accentMeshes = [];
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        32,
+        viewport.clientWidth / Math.max(viewport.clientHeight, 1),
+        0.1,
+        100
+      );
+      camera.position.set(0, 0, 6);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(viewport.clientWidth, viewport.clientHeight);
+      viewport.appendChild(renderer.domElement);
+
+      scene.add(new THREE.AmbientLight(0xffffff, 0.95));
+      const keyLight = new THREE.DirectionalLight(0xffffff, 0.85);
+      keyLight.position.set(3, 5, 4);
+      scene.add(keyLight);
+      const fillLight = new THREE.DirectionalLight(0xffffff, 0.4);
+      fillLight.position.set(-4, -1, -3);
+      scene.add(fillLight);
+
+      const crutchGroup = new THREE.Group();
+      scene.add(crutchGroup);
+
+      function makeCanvasTexture(hex, pattern) {
+        const size = 512;
+        const canvas = document.createElement("canvas");
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = hex;
+        ctx.fillRect(0, 0, size, size);
+
+        if (pattern === "pattern") {
+          ctx.fillStyle = "rgba(255,255,255,0.55)";
+          const step = 42;
+          for (let y = step / 2; y < size; y += step) {
+            for (let x = step / 2; x < size; x += step) {
+              ctx.beginPath();
+              ctx.arc(x, y, 7, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
+        } else if (pattern === "sparkle") {
+          ctx.fillStyle = "rgba(255,255,255,0.9)";
+          ctx.font = "38px serif";
+          ctx.textAlign = "center";
+          for (let i = 0; i < 24; i += 1) {
+            const x = Math.random() * size;
+            const y = Math.random() * size;
+            ctx.fillText("✦", x, y);
+          }
+        }
+
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set(2, 4);
+        return texture;
+      }
+
+      function applyBodyMaterial() {
+        const texture = customTexture || makeCanvasTexture(baseColor, currentPattern);
+        colorMeshes.forEach((mesh) => {
+          mesh.material.map = texture;
+          mesh.material.color.set("#ffffff");
+          mesh.material.needsUpdate = true;
+        });
+      }
+
+      function applyAccentColor() {
+        accentMeshes.forEach((mesh) => {
+          mesh.material.map = null;
+          mesh.material.color.set(accentColor);
+          mesh.material.needsUpdate = true;
+        });
+      }
+
+      const loader = new THREE.GLTFLoader();
+      loader.load(
+        MODEL_URL,
+        (gltf) => {
+          const model = gltf.scene;
+
+          const box = new THREE.Box3().setFromObject(model);
+          const size = new THREE.Vector3();
+          box.getSize(size);
+          const center = new THREE.Vector3();
+          box.getCenter(center);
+          const scale = 3.4 / Math.max(size.x, size.y, size.z, 0.001);
+          model.scale.setScalar(scale);
+          model.position.sub(center.multiplyScalar(scale));
+
+          model.traverse((child) => {
+            if (!child.isMesh) return;
+            child.material = child.material.clone();
+            if (COLOR_PARTS.includes(child.name)) colorMeshes.push(child);
+            if (ACCENT_PARTS.includes(child.name)) accentMeshes.push(child);
+          });
+
+          crutchGroup.add(model);
+          applyBodyMaterial();
+          applyAccentColor();
+        },
+        undefined,
+        (error) => {
+          console.error("Impossible de charger le modèle 3D CRUTCH :", error);
+          viewport.innerHTML =
+            '<p style="padding:24px;color:#777;font-size:12px;">Aperçu 3D indisponible — vérifiez que ' +
+            MODEL_URL +
+            " est bien présent dans le dépôt.</p>";
+        }
+      );
+
+      // Rotation pilotée par la position de la souris dans le cadre
+      let targetY = 0.4;
+      let targetX = 0;
+
+      viewport.addEventListener("mousemove", (event) => {
+        const rect = viewport.getBoundingClientRect();
+        const nx = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        const ny = ((event.clientY - rect.top) / rect.height) * 2 - 1;
+        targetY = nx * Math.PI;
+        targetX = ny * 0.22;
+      });
+
+      viewport.addEventListener("mouseleave", () => {
+        targetX = 0;
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+        crutchGroup.rotation.y += (targetY - crutchGroup.rotation.y) * 0.08;
+        crutchGroup.rotation.x += (targetX - crutchGroup.rotation.x) * 0.08;
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener("resize", () => {
+        if (!viewport.clientWidth || !viewport.clientHeight) return;
+        camera.aspect = viewport.clientWidth / viewport.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(viewport.clientWidth, viewport.clientHeight);
+      });
+
+      /* --- Câblage avec les contrôles du Studio CRUTCH --- */
+
+      document.querySelectorAll("#primaryColors .swatch").forEach((swatch) => {
+        swatch.addEventListener("click", () => {
+          document
+            .querySelectorAll("#primaryColors .swatch")
+            .forEach((item) => item.classList.remove("active"));
+          swatch.classList.add("active");
+          baseColor = swatch.dataset.color;
+          customTexture = null;
+          applyBodyMaterial();
+        });
+      });
+
+      document.querySelectorAll("#patterns button").forEach((button) => {
+        button.addEventListener("click", () => {
+          document
+            .querySelectorAll("#patterns button")
+            .forEach((item) => item.classList.remove("active"));
+          button.classList.add("active");
+          currentPattern = button.dataset.pattern;
+          customTexture = null;
+          applyBodyMaterial();
+        });
+      });
+
+      const styleSelect = document.getElementById("styleSelect");
+      if (styleSelect) {
+        styleSelect.addEventListener("change", (event) => {
+          accentColor = event.target.value;
+          applyAccentColor();
+        });
+      }
+
+      const customImageInput = document.getElementById("customImageInput");
+      const uploadFilename = document.getElementById("uploadFilename");
+      if (customImageInput) {
+        customImageInput.addEventListener("change", (event) => {
+          const file = event.target.files[0];
+          if (!file) return;
+          if (uploadFilename) uploadFilename.textContent = file.name;
+
+          const reader = new FileReader();
+          reader.onload = (readerEvent) => {
+            const img = new Image();
+            img.onload = () => {
+              const texture = new THREE.Texture(img);
+              texture.wrapS = THREE.RepeatWrapping;
+              texture.wrapT = THREE.RepeatWrapping;
+              texture.repeat.set(1, 2);
+              texture.needsUpdate = true;
+              customTexture = texture;
+              applyBodyMaterial();
+            };
+            img.src = readerEvent.target.result;
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
+      document.querySelectorAll("#modelCategory button").forEach((button) => {
+        button.addEventListener("click", () => {
+          document
+            .querySelectorAll("#modelCategory button")
+            .forEach((item) => item.classList.remove("active"));
+          button.classList.add("active");
+        });
+      });
+    })();
   </script>
 
 </body>
